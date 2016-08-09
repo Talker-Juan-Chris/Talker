@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Talker.Models.Talk>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TalkContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timestamp)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TalkContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timestamp)
+        </td>
+        <td>
+            @if (item.User == User.Identity.Name)
+            {
+                <a href="@Url.Action("Edit", "Talks", new { id = item.TalkID })">Edit</a>
+                <a href="@Url.Action("Delete", "Talks", new { id = item.TalkID })">Delete</a>
+
+            }
+
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.TalkID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.TalkID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.TalkID })*@
+            
+
+        </td>
+    </tr>
+}
+
+</table>

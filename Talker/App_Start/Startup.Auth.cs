@@ -58,11 +58,11 @@ namespace Talker
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "653872894968-3jd9crgau0atg6jmb2q2vlurg0sk2j5u.apps.googleusercontent.com",
+                ClientSecret = "fnAutVB6yYqBYh4oEutJK3HI"
+            });
         }
     }
 }

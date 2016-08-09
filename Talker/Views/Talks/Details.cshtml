@@ -1,0 +1,34 @@
+﻿@model Talker.Models.Talk
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Talk</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TalkContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalkContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timestamp)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TalkID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
