@@ -83,9 +83,12 @@
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            <a href="@Url.Action()">Follow | </a>
+            <a href="@Url.Action()">Unfollow</a>
+
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
         </td>
     </tr>
 }
