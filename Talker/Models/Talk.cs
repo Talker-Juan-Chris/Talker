@@ -16,6 +16,6 @@ namespace Talker.Models
         [DataType (DataType.DateTime)]
         public string timestamp { get; set; }
 
-        public string User { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     } 
 }

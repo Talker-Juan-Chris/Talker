@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201608091456524_followers.Designer.cs">
       <DependentUpon>201608091456524_followers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608110043528_applicationUser in Talks model.cs" />
+    <Compile Include="Migrations\201608110043528_applicationUser in Talks model.Designer.cs">
+      <DependentUpon>201608110043528_applicationUser in Talks model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608091456524_followers.resx">
       <DependentUpon>201608091456524_followers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608110043528_applicationUser in Talks model.resx">
+      <DependentUpon>201608110043528_applicationUser in Talks model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

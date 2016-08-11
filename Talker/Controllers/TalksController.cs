@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Talker.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Talker.Controllers
 {
@@ -14,10 +16,31 @@ namespace Talker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        private ApplicationUser CurrentUser
+        {
+            get
+            {
+                UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = UserManager.FindById(User.Identity.GetUserId());
+                return currentUser;
+            }
+        }
+
         // GET: Talks
         public ActionResult Index()
         {
-            return View(db.Talks.ToList());
+            //return View(db.Talks.ToList());
+            var followingUsernames = (from f in CurrentUser.Following
+                                      select f.UserName).ToList();
+
+            followingUsernames.Add(CurrentUser.UserName);
+
+            var talks = from m in db.Talks
+                           where followingUsernames.Contains(m.ApplicationUser.UserName)
+                           orderby m.timestamp descending
+                           select m;
+
+            return View(talks.ToList());
         }
 
         // GET: Talks/Details/5
@@ -46,11 +69,12 @@ namespace Talker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TalkID,TalkContent,timestamp")] Talk talk)
+        public ActionResult Create([Bind(Include = "TalkID,TalkContent")] Talk talk)
         {
             talk.timestamp = DateTime.Now.ToString();
+            talk.ApplicationUser = CurrentUser;
             //ApplicationUser currentUser = new ApplicationUser(User.Identity.na);
-            talk.User = User.Identity.Name;
+            //talk.User = User.Identity.Name; 
             //talk.User = currentUser;
             if (ModelState.IsValid)
             {
@@ -71,10 +95,10 @@ namespace Talker.Controllers
             }
             
             Talk talk = db.Talks.Find(id);
-            if (talk.User != User.Identity.Name)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            //if (talk.User != User.Identity.Name)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
             if (talk == null)
             {
                 return HttpNotFound();
@@ -90,7 +114,7 @@ namespace Talker.Controllers
         public ActionResult Edit([Bind(Include = "TalkID,TalkContent,timestamp")] Talk talk)
         {
             talk.timestamp = ("Edited: " + DateTime.Now);
-            talk.User = User.Identity.Name;
+            //talk.User = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 db.Entry(talk).State = EntityState.Modified;

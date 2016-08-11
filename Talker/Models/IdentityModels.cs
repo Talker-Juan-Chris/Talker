@@ -11,9 +11,9 @@ namespace Talker.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public ICollection<ApplicationUser> Followers { get; set; }
-        public ICollection<ApplicationUser> Following { get; set; }
-        public ICollection<Talk> Talks { get; set; }
+        public virtual ICollection<ApplicationUser> Followers { get; set; }
+        public virtual ICollection<ApplicationUser> Following { get; set; }
+        public virtual ICollection<Talk> Talks { get; set; }
 
        
 
