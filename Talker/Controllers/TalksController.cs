@@ -73,9 +73,6 @@ namespace Talker.Controllers
         {
             talk.timestamp = DateTime.Now.ToString();
             talk.ApplicationUser = CurrentUser;
-            //ApplicationUser currentUser = new ApplicationUser(User.Identity.na);
-            //talk.User = User.Identity.Name; 
-            //talk.User = currentUser;
             if (ModelState.IsValid)
             {
                 db.Talks.Add(talk);

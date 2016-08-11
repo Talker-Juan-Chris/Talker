@@ -15,9 +15,6 @@ namespace Talker.Models
         public virtual ICollection<ApplicationUser> Following { get; set; }
         public virtual ICollection<Talk> Talks { get; set; }
 
-       
-
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -41,7 +38,6 @@ namespace Talker.Models
 
         public System.Data.Entity.DbSet<Talker.Models.Talk> Talks { get; set; }
 
-        //public DbSet<ApplicationUser> User { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ApplicationUser>()
@@ -51,6 +47,5 @@ namespace Talker.Models
                 .MapRightKey("FollowerId"));
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }

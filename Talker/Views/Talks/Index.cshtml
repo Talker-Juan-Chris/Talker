@@ -4,23 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Talks</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Post", "Create")
 </p>
 
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.User)*@
             User
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TalkContent)
+            Talk
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.timestamp)
+            Posted on:
         </th>
         <th></th>
     </tr>
